@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscription · Tekasmart académie</title>
+<meta name="description" content="Inscrivez-vous à la formation Tekasmart académie : informatique de base, bureautique, développement web, Git et GitHub, design graphique. Inscription : 5 $. Formation : 35 $. Durée : 1 mois.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6FB;
+  --paper:#FFFFFF;
+  --ink:#10163A;
+  --muted:#4F5678;
+  --line:#D9DEEE;
+  --blue:#2B44F5;
+  --blue-deep:#1B2BB0;
+  --sun:#FFC83D;
+  --ok:#0E7A4F;
+  --err:#B42318;
+  --radius:14px;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--blue-deep)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+h1,h2,h3{font-family:var(--head);line-height:1.08;margin:0;letter-spacing:-.02em}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0}
+.brand{font:800 1.35rem var(--head);letter-spacing:-.03em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.6rem}
+.brand i{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--blue);color:#fff;font-style:normal;font-size:1.1rem}
+.top a.btn-s{font-weight:600;text-decoration:none;color:var(--ink);border:2px solid var(--ink);padding:.45rem 1rem;border-radius:999px}
+.top a.btn-s:hover{background:var(--ink);color:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;padding:3rem 0 5rem}
+.hero h1{font-size:clamp(2.5rem,6vw,4.6rem);font-weight:800}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:1.4rem 0 2rem}
+.cta{display:inline-block;background:var(--blue);color:#fff;font:700 1.05rem var(--body);padding:1rem 1.8rem;border-radius:12px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 5px 0 var(--blue-deep);transition:transform .12s,box-shadow .12s}
+.cta:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--blue-deep)}
+.cta:active{transform:translateY(5px);box-shadow:0 0 0 var(--blue-deep)}
+.cta[disabled]{opacity:.6;cursor:not-allowed}
+.small{font-size:.95rem;color:var(--muted)}
+
+/* ticket */
+.ticket{position:relative;background:var(--paper);border-radius:20px;padding:2rem 2rem 1.6rem;box-shadow:0 18px 40px -18px rgba(16,22,58,.35);transform:rotate(1.6deg)}
+.ticket::before,.ticket::after{content:"";position:absolute;top:63%;width:28px;height:28px;border-radius:50%;background:var(--bg)}
+.ticket::before{left:-14px}.ticket::after{right:-14px}
+.ticket .price{display:flex;align-items:baseline;gap:.4rem;font-family:var(--head);font-weight:800}
+.ticket .price b{font-size:5.5rem;line-height:1;color:var(--blue)}
+.ticket .price span{font-size:1.4rem;color:var(--muted)}
+.ticket h2{font-size:1.25rem;margin:.4rem 0 1.2rem}
+.ticket .plus{margin:-.6rem 0 1.2rem;color:var(--muted)}
+.ticket ul{list-style:none;margin:0 0 2.2rem;padding:0;display:grid;gap:.5rem}
+.ticket li{padding-left:1.7rem;position:relative}
+.ticket li::before{content:"";position:absolute;left:0;top:.5em;width:.9rem;height:.5rem;border-left:3px solid var(--ok);border-bottom:3px solid var(--ok);transform:rotate(-45deg)}
+.ticket .stub{border-top:2px dashed var(--line);padding-top:1.1rem;font-weight:600;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ticket .stub span:last-child{background:var(--sun);padding:.1rem .7rem;border-radius:999px}
+
+/* sections */
+section{padding:4.5rem 0}
+section.alt{background:var(--paper)}
+.sec-head{max-width:40rem;margin-bottom:2.5rem}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3rem)}
+.sec-head p{color:var(--muted);margin:.9rem 0 0}
+
+/* path (real sequence) */
+.path{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.path li{display:grid;grid-template-columns:3.2rem 1fr;gap:1.4rem;position:relative;padding-bottom:2rem}
+.path li:last-child{padding-bottom:0}
+.path li::before{content:"";position:absolute;left:1.55rem;top:3.2rem;bottom:0;width:2px;background:var(--line)}
+.path li:last-child::before{display:none}
+.path .n{width:3.2rem;height:3.2rem;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 1.25rem var(--head)}
+.path li.final .n{background:var(--sun);color:var(--ink)}
+.path h3{font-size:1.4rem;margin-bottom:.3rem}
+.path p{margin:0;color:var(--muted);max-width:42rem}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}
+.tags span{font-weight:600;font-size:.9rem;background:var(--bg);border:1px solid var(--line);padding:.15rem .7rem;border-radius:999px}
+
+/* outcomes */
+.out{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.out div{border-top:4px solid var(--blue);padding-top:1rem}
+.out div:nth-child(2){border-color:var(--sun)}
+.out div:nth-child(3){border-color:var(--ink)}
+.out h3{font-size:1.3rem;margin-bottom:.4rem}
+.out p{margin:0;color:var(--muted)}
+
+/* form */
+.form-grid{display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start}
+form{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:2rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.field{display:grid;gap:.4rem;margin-bottom:1.2rem}
+label,legend{font-weight:600;font-size:.98rem}
+.opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],select{width:100%;font:inherit;color:var(--ink);background:#fff;border:2px solid var(--line);border-radius:10px;padding:.8rem .9rem;min-height:48px}
+input:hover,select:hover{border-color:#B7BFE0}
+input:focus,select:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 4px rgba(43,68,245,.18)}
+input:user-invalid,select:user-invalid{border-color:var(--err)}
+fieldset{border:0;padding:0;margin:0 0 1.2rem}
+.choices{display:grid;gap:.6rem;margin-top:.5rem}
+.choice{display:flex;gap:.7rem;align-items:center;border:2px solid var(--line);border-radius:10px;padding:.75rem .9rem;cursor:pointer;font-weight:500}
+.choice:has(input:checked){border-color:var(--blue);background:#EEF1FF}
+.choice input{accent-color:var(--blue);width:1.15rem;height:1.15rem}
+.check{display:flex;gap:.7rem;align-items:flex-start;font-weight:400;margin-bottom:1.5rem}
+.check input{accent-color:var(--blue);width:1.15rem;height:1.15rem;margin-top:.3rem;flex:none}
+.error{color:var(--err);font-weight:600;min-height:1.3em;margin:-.6rem 0 1rem}
+aside.recap{position:sticky;top:1.5rem;background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.6rem}
+aside.recap h3{font-size:1.2rem;margin-bottom:1rem}
+aside.recap dl{margin:0;display:grid;gap:.7rem}
+aside.recap dt{font-size:.85rem;color:#B9C0E6}
+aside.recap dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+aside.recap .total{margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.25);display:flex;justify-content:space-between;align-items:baseline;font-family:var(--head);font-weight:700}
+aside.recap .total b{font-size:2rem;color:var(--sun)}
+aside.recap .total.sub{margin-top:.7rem;padding-top:.7rem}
+aside.recap .total.sub b{font-size:1.5rem;color:#fff}
+
+/* confirmation */
+#done{display:none;background:var(--paper);border:2px solid var(--ok);border-radius:var(--radius);padding:2rem}
+#done.show{display:block}
+#done h3{font-size:1.8rem;margin-bottom:.6rem}
+.ref{display:inline-block;font:800 1.5rem var(--head);background:var(--sun);padding:.2rem .9rem;border-radius:10px;margin:.4rem 0 1rem;letter-spacing:.03em}
+.steps{margin:1.2rem 0;padding-left:1.3rem}
+.steps li{margin-bottom:.5rem}
+.pay{background:var(--bg);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.pay p{margin:.2rem 0}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.4rem}
+.btn-line{display:inline-block;font:600 1rem var(--body);padding:.9rem 1.4rem;border-radius:12px;border:2px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;cursor:pointer}
+.btn-line:hover{background:var(--ink);color:#fff}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:1.1rem 0}
+details summary{cursor:pointer;font:700 1.15rem var(--head);list-style:none;display:flex;justify-content:space-between;gap:1rem}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-size:1.5rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:.7rem 0 0;color:var(--muted);max-width:44rem}
+
+footer{background:var(--ink);color:#B9C0E6;padding:2.5rem 0;font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer b{color:#fff;font-family:var(--head)}
+footer .wrap{align-items:center}
+.flink{color:#fff}
+.social-links{display:flex;gap:.7rem}
+.social-links a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:1.25rem;text-decoration:none}
+.social-links a:hover{background:var(--sun);color:var(--ink)}
+.social-links a:focus-visible{outline-color:var(--sun)}
+.preview{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.98rem}
+.preview th,.preview td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+.preview th{width:38%;color:var(--muted);font-weight:600}
+.preview td{overflow-wrap:anywhere}
+.status{display:inline-block;font-weight:700;padding:.1rem .7rem;border-radius:999px;background:var(--sun)}
+
+@media (prefers-reduced-motion:no-preference){
+  .ticket{animation:land .7s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes land{from{transform:translateY(-30px) rotate(-4deg);opacity:0}to{transform:rotate(1.6deg);opacity:1}}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-bottom:3rem}
+  .ticket{transform:none;animation:none}
+  .out{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  aside.recap{position:static;order:-1}
+}
+@media (max-width:560px){
+  .row{grid-template-columns:1fr}
+  form{padding:1.3rem}
+  .ticket .price b{font-size:4.2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#"><i>T</i> Tekasmart académie</a>
+    <a class="btn-s" href="#inscription">S'inscrire</a>
+  </header>
+
+  <main>
+  <div class="hero">
+    <div>
+      <h1>Choisissez votre formation et développez vos compétences en un mois.</h1>
+      <p class="lead">Choisissez la formation qui correspond à votre objectif : informatique de base et bureautique, développement web, ou design graphique. Une formation pratique d’un mois.</p>
+      <a class="cta" href="#inscription">Je m'inscris</a>
+      <p class="small" style="margin-top:1rem">Aucun prérequis. Si vous avez un ordinateur, apportez-le pour les exercices pratiques. Durée : 1 mois. Inscription : 5 $, formation : 35 $.</p>
+      <div class="session-info" aria-label="Dates et places">
+        <article><strong>1er novembre</strong><span>Début de la formation</span></article>
+        <article><strong>30 octobre</strong><span>Date limite d'inscription</span></article>
+        <article><strong>100 personnes</strong><span>Places limitées</span></article>
+      </div>
+    </div>
+    <div class="ticket" aria-label="Frais d'inscription : 5 dollars">
+      <div class="price"><b>5</b><span>$ US</span></div>
+      <h2>Frais d'inscription, payés une seule fois</h2>
+      <p class="plus">Puis <strong>35 $</strong> de frais de formation.</p>
+      <ul>
+        <li>Informatique de base</li>
+        <li>Bureautique</li>
+        <li>Développement web : HTML, CSS, JavaScript</li>
+        <li>Git et GitHub</li>
+        <li>Design graphique</li>
+        <li>Projet final : votre portfolio</li>
+      </ul>
+      <p class="small"><strong>Durée : 1 mois</strong></p>
+      <div class="stub"><span>Place d'élève</span><span>Tekasmart académie</span></div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<section class="alt" id="programme">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Nos trois formations</h2>
+      <p>Choisissez une seule des trois formations proposées. Chaque parcours dure un mois et privilégie la pratique.</p>
+    </div>
+    <ol class="path">
+      <li>
+        <div class="n">1</div>
+        <div>
+          <h3>Informatique de base et bureautique</h3>
+          <p>Apprenez à utiliser un ordinateur, organiser vos fichiers, naviguer sur Internet et créer des documents, tableaux et présentations.</p>
+          <div class="tags"><span>Ordinateur</span><span>Word / documents</span><span>Tableurs</span><span>Présentations</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="n">2</div>
+        <div>
+          <h3>Développement web</h3>
+          <p>Apprenez à construire et publier des sites web. Le projet final est la création de votre propre portfolio en ligne.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git</span><span>GitHub</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="n">3</div>
+        <div>
+          <h3>Design graphique</h3>
+          <p>Découvrez la création de visuels, d’affiches et d’éléments graphiques pour présenter vos idées de manière professionnelle.</p>
+          <div class="tags"><span>Composition</span><span>Couleurs</span><span>Visuels</span></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Une formation adaptée à votre objectif</h2><p>Choisissez un seul parcours dans le formulaire d’inscription. Chaque formation dure un mois.</p></div>
+    <div class="out">
+      <div><h3>Pratique guidée</h3><p>Des exercices pour mettre en pratique les notions apprises pendant la formation.</p></div>
+      <div><h3>Projet de fin de formation</h3><p>En développement web, le projet final est un portfolio personnel publié sur GitHub Pages.</p></div>
+      <div><h3>Ordinateur conseillé</h3><p>Si vous possédez un ordinateur, apportez-le pour participer aux exercices pratiques.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="inscription">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Inscription</h2>
+      <p>Remplissez le formulaire pour envoyer votre demande. La formation dure <strong>1 mois</strong> et commence le <strong>1er novembre</strong>. La date limite d'inscription est le <strong>30 octobre</strong>, dans la limite de <strong>100 personnes</strong>. Les frais sont de 5 $ pour l'inscription et 35 $ pour la formation. Le paiement est facultatif à cette étape.</p>
+      <p class="small">Si vous avez un ordinateur, apportez-le pour les exercices pratiques.</p>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <form id="form" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="nom">Nom complet</label>
+              <input type="text" id="nom" name="nom" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="tel">Téléphone (WhatsApp)</label>
+              <input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="+243 ..." required>
+            </div>
+            <div class="field">
+              <label for="ville">Ville et pays</label>
+              <input type="text" id="ville" name="ville" autocomplete="address-level2" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="age">Tranche d'âge</label>
+              <select id="age" name="age" required>
+                <option value="">Choisir…</option>
+                <option>Moins de 18 ans</option>
+                <option>18 à 25 ans</option>
+                <option>26 à 35 ans</option>
+                <option>36 ans et plus</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="niveau">Votre niveau en informatique</label>
+              <select id="niveau" name="niveau" required>
+                <option value="">Choisir…</option>
+                <option>Débutant complet</option>
+                <option>Je sais utiliser un ordinateur</option>
+                <option>J'ai déjà fait un peu de code</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="formation">Choisissez votre formation <span aria-hidden="true">*</span></label>
+            <select id="formation" name="formation" required>
+              <option value="">Sélectionnez une formation…</option>
+              <option value="Informatique de base et bureautique">Informatique de base et bureautique</option>
+              <option value="Développement web (HTML, CSS, JavaScript, Git et GitHub)">Développement web (HTML, CSS, JavaScript, Git et GitHub)</option>
+              <option value="Design graphique">Design graphique</option>
+            </select>
+            <p class="small">Durée de la formation : 1 mois.</p>
+          </div>
+
+          <div class="field">
+            <label for="objectif">Votre objectif <span class="opt">(facultatif)</span></label>
+            <input type="text" id="objectif" name="objectif" placeholder="Ex. : trouver un emploi, créer mon site, freelance">
+          </div>
+
+          <fieldset>
+            <legend>Moyen de paiement des 5 $ d'inscription <span class="opt">(facultatif pour l'instant)</span></legend>
+            <p class="small">Vous pouvez choisir un moyen de paiement, mais ce n'est pas obligatoire pour envoyer le formulaire.</p>
+            <div class="choices" id="payChoices"></div>
+          </fieldset>
+
+          <label class="check">
+            <input type="checkbox" id="ok" required>
+            <span>Je comprends que les frais d'inscription sont de 5 $ et les frais de formation de 35 $. L'envoi d'argent est facultatif à cette étape.</span>
+          </label>
+
+          <div class="error" id="err" role="alert"></div>
+          <button class="cta" type="submit">Valider mon inscription</button>
+        </form>
+
+        <div id="done" tabindex="-1" aria-live="polite"></div>
+      </div>
+
+      <aside class="recap" aria-label="Récapitulatif">
+        <h3>Votre inscription</h3>
+        <dl>
+          <div><dt>Formation choisie</dt><dd id="rFormation">À choisir</dd></div>
+          <div><dt>Durée</dt><dd>1 mois</dd></div>
+          <div><dt>Élève</dt><dd id="rNom">À remplir</dd></div>
+          <div><dt>Paiement choisi (facultatif)</dt><dd id="rPay">Non choisi</dd></div>
+        </dl>
+        <div class="total"><span>Inscription</span><b>5 $</b></div>
+        <div class="total sub"><span>Formation</span><b>35 $</b></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><h2>Questions fréquentes</h2></div>
+    <details>
+      <summary>Dois-je déjà savoir utiliser un ordinateur ?</summary>
+      <p>Non. Le premier module part de zéro et vous apprend les bases avant de passer au reste.</p>
+    </details>
+    <details>
+      <summary>Que couvrent les 5 $ ?</summary>
+      <p>Les frais d'inscription sont de 5 $ et les frais de formation de 35 $. L'envoi d'argent est facultatif pour le moment et le formulaire ne traite aucun paiement.</p>
+    </details>
+    <details>
+      <summary>Comment ma place est-elle confirmée ?</summary>
+      <p>Après le formulaire, vous pouvez envoyer votre récapitulatif par WhatsApp ou par e-mail. Le paiement est facultatif à cette étape. Les moyens proposés sont Orange Money, Airtel Money, M-Pesa et Afrimoney.</p>
+    </details>
+    <details>
+      <summary>Quand commence la formation et quelle est la date limite ?</summary>
+      <p>La formation commence le 1er novembre. Les inscriptions se terminent le 30 octobre et sont limitées à 100 personnes.</p>
+    </details>
+    <details>
+      <summary>Dois-je apporter mon ordinateur ?</summary>
+      <p>Si vous avez un ordinateur portable ou de bureau, apportez-le pour les exercices pratiques. Si vous n'en avez pas, contactez l'académie pour vous renseigner.</p>
+    </details>
+    <details>
+      <summary>De quoi ai-je besoin pour suivre la formation ?</summary>
+      <p>Une connexion Internet est utile. Les outils utilisés pour le code et le design sont gratuits. Si vous avez un ordinateur, apportez-le.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p style="margin:0 0 .3rem"><b>Tekasmart académie</b> · Apprendre, créer, publier.</p>
+      <p style="margin:0">Contact / WhatsApp : <a class="flink" href="https://wa.me/243967832939" target="_blank" rel="noopener noreferrer">0967832939</a> · <a class="flink" href="mailto:moderatemuandakonde77@gmail.com">moderatemuandakonde77@gmail.com</a></p>
+      <p style="margin:.35rem 0 0">Pour plus d'informations, contactez-moi ou envoyez votre aperçu d'inscription par WhatsApp, e-mail, Facebook ou Instagram via les liens ci-dessous.</p>
+    </div>
+    <div class="social-links">
+      <a href="https://github.com/moderatemuandakonde77" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Moderate Muanda Konde"><i class="bi bi-github"></i></a>
+      <a href="https://facebook.com/profile.php?id=61594933133115" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Moderate Muanda Konde"><i class="bi bi-facebook"></i></a>
+      <a href="mailto:moderatemuandakonde77@gmail.com?subject=Projet%20Web" aria-label="Envoyer un email à Moderate Muanda Konde"><i class="bi bi-envelope"></i></a>
+      <a href="https://www.instagram.com/moderatemuandakonde77/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Moderate Muanda Konde"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/moderate-muanda-konde-a6bbb143a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Moderate Muanda Konde"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   À MODIFIER : vos vraies coordonnées
+   ============================================================ */
+const CONFIG = {
+  // Numéro congolais normalisé pour les liens WhatsApp : indicatif + numéro sans le 0 initial.
+  whatsapp: "243967832939",
+  email: "moderatemuandakonde77@gmail.com",
+  numeroPaiement: "0967832939",
+  paiements: [
+    { id: "orange", label: "Orange Money", detail: "Orange Money · Numéro : 0967832939" },
+    { id: "airtel", label: "Airtel Money", detail: "Airtel Money · Numéro : 0967832939" },
+    { id: "mpesa", label: "M-Pesa", detail: "M-Pesa · Numéro : 0967832939" },
+    { id: "afrimoney", label: "Afrimoney", detail: "Afrimoney · Numéro : 0967832939" }
+  ]
+};
+
+const $ = (id) => document.getElementById(id);
+const form = $("form");
+
+/* Moyens de paiement */
+const payBox = $("payChoices");
+CONFIG.paiements.forEach((p) => {
+  const l = document.createElement("label");
+  l.className = "choice";
+  l.innerHTML = '<input type="radio" name="pay" value="' + p.id + '"> ' + p.label;
+  payBox.appendChild(l);
+});
+const payChoice = () => {
+  const selected = form.querySelector('input[name="pay"]:checked');
+  return selected ? CONFIG.paiements.find(x => x.id === selected.value) : null;
+};
+const payLabel = () => {
+  const p = payChoice();
+  return p ? p.label : "Non choisi";
+};
+$("rPay").textContent = payLabel();
+form.addEventListener("change", () => {
+  $("rPay").textContent = payLabel();
+  if ($("rFormation")) $("rFormation").textContent = $("formation").value || "À choisir";
+});
+$("nom").addEventListener("input", (e) => { $("rNom").textContent = e.target.value.trim() || "À remplir"; });
+
+
+/* Référence d'inscription */
+function makeRef() {
+  const d = new Date();
+  const part = String(d.getFullYear()).slice(2) + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0");
+  const rnd = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return "TKA-" + part + "-" + rnd;
+}
+const esc = (s) => s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  $("err").textContent = "";
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    $("err").textContent = "Complétez les champs en rouge pour continuer.";
+    return;
+  }
+
+  const data = {
+    ref: makeRef(),
+    nom: $("nom").value.trim(),
+    email: $("email").value.trim(),
+    tel: $("tel").value.trim(),
+    ville: $("ville").value.trim(),
+    age: $("age").value,
+    niveau: $("niveau").value,
+    formation: $("formation").value,
+    objectif: $("objectif").value.trim() || "Non précisé",
+    pay: payChoice()
+  };
+
+  const msg =
+`Inscription Tekasmart académie
+Référence : ${data.ref}
+Nom : ${data.nom}
+E-mail : ${data.email}
+Téléphone : ${data.tel}
+Ville et pays : ${data.ville}
+Tranche d'âge : ${data.age}
+Niveau : ${data.niveau}
+Formation choisie : ${data.formation}
+Durée : 1 mois
+Objectif : ${data.objectif}
+Frais d'inscription : 5 USD
+Frais de formation : 35 USD
+Durée de la formation : 1 mois
+Début de la formation : 1er novembre
+Date limite d'inscription : 30 octobre
+Limite : 100 personnes
+Ordinateur : à apporter si vous en possédez un
+Moyen de paiement choisi : ${data.pay ? data.pay.label : "Non choisi (paiement facultatif pour l'instant)"}
+
+Cette inscription est une demande enregistrée sur mon appareil. Je peux envoyer ce récapitulatif pour contacter l'académie.`;
+
+  const wa = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+  const mail = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Inscription " + data.ref + " - " + data.nom) + "&body=" + encodeURIComponent(msg);
+  const jsonData = {
+    reference: data.ref,
+    date_inscription: new Date().toLocaleString("fr-FR"),
+    nom_complet: data.nom,
+    email: data.email,
+    telephone_whatsapp: data.tel,
+    ville_pays: data.ville,
+    tranche_age: data.age,
+    niveau_informatique: data.niveau,
+    formation_choisie: data.formation,
+    duree_formation: "1 mois",
+    objectif: data.objectif,
+    moyen_paiement_choisi: data.pay ? data.pay.label : "Non choisi",
+    frais_inscription_usd: 5,
+    frais_formation_usd: 35,
+    statut_paiement: "Non vérifié - paiement facultatif à cette étape"
+  };
+
+  const done = $("done");
+  done.innerHTML =
+    '<h3>Merci ' + esc(data.nom.split(" ")[0]) + ', il reste une étape.</h3>' +
+    '<p>Votre numéro d\'inscription :</p>' +
+    '<div class="ref">' + data.ref + '</div>' +
+    '<ol class="steps">' +
+      '<li>Vérifiez les informations dans l’aperçu ci-dessous.</li>' +
+      '<li>Le paiement est facultatif à cette étape. Si vous le choisissez plus tard, utilisez uniquement un moyen officiel confirmé par l’académie.</li>' +
+      '<li>Pour que l’académie reçoive votre demande, envoyez le récapitulatif par WhatsApp ou par e-mail.</li>' +
+    '</ol>' +
+    '<div class="pay"><p><strong>Moyen de paiement</strong></p><p>' + (data.pay ? esc(data.pay.detail) : 'Aucun moyen sélectionné. Aucun paiement n’est demandé pour valider ce formulaire.') + '</p><p class="small">Frais d’inscription : 5 $ · Frais de formation : 35 $.</p></div>' +
+    '<h3 style="margin-top:1.5rem">Aperçu des informations</h3>' +
+    '<table class="preview"><tbody>' +
+      '<tr><th>Référence</th><td>' + esc(data.ref) + '</td></tr>' +
+      '<tr><th>Nom complet</th><td>' + esc(data.nom) + '</td></tr>' +
+      '<tr><th>E-mail</th><td>' + esc(data.email) + '</td></tr>' +
+      '<tr><th>Téléphone</th><td>' + esc(data.tel) + '</td></tr>' +
+      '<tr><th>Ville et pays</th><td>' + esc(data.ville) + '</td></tr>' +
+      '<tr><th>Tranche d’âge</th><td>' + esc(data.age) + '</td></tr>' +
+      '<tr><th>Niveau</th><td>' + esc(data.niveau) + '</td></tr>' +
+      '<tr><th>Formation choisie</th><td>' + esc(data.formation) + '</td></tr>' +
+      '<tr><th>Durée</th><td>1 mois</td></tr>' +
+      '<tr><th>Objectif</th><td>' + esc(data.objectif) + '</td></tr>' +
+      '<tr><th>Moyen de paiement</th><td>' + esc(data.pay ? data.pay.label : 'Non choisi') + '</td></tr>' +
+      '<tr><th>Frais</th><td>Inscription : 5 USD · Formation : 35 USD</td></tr>' +
+    '</tbody></table>' +
+    '<div class="actions">' +
+      '<a class="cta" href="' + wa + '" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>' +
+      '<a class="btn-line" href="' + mail + '">Envoyer par e-mail</a>' +
+      '<a class="btn-line" href="https://facebook.com/profile.php?id=61594933133115" target="_blank" rel="noopener noreferrer">Ouvrir Facebook</a>' +
+      '<a class="btn-line" href="https://www.instagram.com/moderatemuandakonde77/" target="_blank" rel="noopener noreferrer">Ouvrir Instagram</a>' +
+      '<button class="btn-line" type="button" id="download">Télécharger l’aperçu en PDF</button>' +
+      '<button class="btn-line" type="button" id="copy">Copier le récapitulatif</button>' +
+    '</div>' +
+    '<p class="small" id="copyMsg" style="margin-top:.8rem" aria-live="polite"></p>';
+
+  form.style.display = "none";
+  done.classList.add("show");
+  done.focus();
+  done.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  $("download").addEventListener("click", () => {
+    const pdfWindow = window.open("", "_blank");
+    if (!pdfWindow) {
+      $("copyMsg").textContent = "Autorisez la fenêtre d’impression pour enregistrer votre aperçu en PDF.";
+      return;
+    }
+    const rows = [
+      ["Référence", data.ref], ["Nom complet", data.nom], ["E-mail", data.email],
+      ["Téléphone / WhatsApp", data.tel], ["Ville et pays", data.ville],
+      ["Tranche d’âge", data.age], ["Niveau informatique", data.niveau],
+      ["Formation choisie", data.formation], ["Durée", "1 mois"],
+      ["Objectif", data.objectif], ["Moyen de paiement choisi", data.pay ? data.pay.label : "Non choisi"],
+      ["Frais d’inscription", "5 USD"], ["Frais de formation", "35 USD"],
+      ["Début de la formation", "1er novembre"], ["Date limite d’inscription", "30 octobre"],
+      ["Places maximum", "100 personnes"], ["Paiement", "Facultatif à cette étape"]
+    ];
+    const safe = value => String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    pdfWindow.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Inscription Tekasmart - ' + safe(data.ref) + '</title><style>body{font:14px Arial,sans-serif;color:#10163A;margin:35px}h1{color:#2B44F5}p{color:#4F5678}table{width:100%;border-collapse:collapse;margin-top:24px}th,td{text-align:left;padding:10px;border-bottom:1px solid #D9DEEE;vertical-align:top}th{width:35%;background:#F4F6FB}button{padding:10px 16px}@media print{body{margin:15mm}button{display:none}}</style></head><body><h1>Tekasmart Académie</h1><p>Aperçu de la demande d’inscription · ' + safe(data.ref) + '</p><p>Durée : 1 mois · Début : 1er novembre · Date limite : 30 octobre · 100 places maximum</p><table><tbody>' + rows.map(row => '<tr><th>' + safe(row[0]) + '</th><td>' + safe(row[1]) + '</td></tr>').join('') + '</tbody></table><p>Ce document est un aperçu. Il ne confirme ni le paiement ni l’inscription définitive.</p><button onclick="window.print()">Imprimer / Enregistrer en PDF</button><script>window.onload=()=>window.print()<\/script></body></html>');
+    pdfWindow.document.close();
+  });
+
+  $("copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(msg);
+      $("copyMsg").textContent = "Récapitulatif copié.";
+    } catch (_) {
+      $("copyMsg").textContent = "Copie impossible. Sélectionnez le texte et copiez-le manuellement.";
+    }
+  });
+});
+</script>
+</body>
+</html>
