@@ -836,6 +836,37 @@
         font-size: 4.2rem
       }
     }
+
+    .session-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .8rem;
+      margin-top: 1.8rem;
+    }
+
+    .session-info article {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .9rem 1rem;
+    }
+
+    .session-info strong {
+      display: block;
+      font: 800 1.2rem var(--head);
+      color: var(--blue);
+    }
+
+    .session-info span {
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 560px) {
+      .session-info {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -1291,26 +1322,47 @@ Cette inscription est une demande enregistrée sur mon appareil. Je peux envoyer
       done.scrollIntoView({ behavior: "smooth", block: "start" });
 
       $("download").addEventListener("click", () => {
-        const pdfWindow = window.open("", "_blank");
-        if (!pdfWindow) {
-          $("copyMsg").textContent = "Autorisez la fenêtre d’impression pour enregistrer votre aperçu en PDF.";
+        if (!window.jspdf) {
+          $("copyMsg").textContent = "Le module PDF ne s'est pas chargé. Ouvrez la page dans Chrome ou Safari et réessayez.";
           return;
         }
         const rows = [
           ["Référence", data.ref], ["Nom complet", data.nom], ["E-mail", data.email],
           ["Téléphone / WhatsApp", data.tel], ["Ville et pays", data.ville],
-          ["Tranche d’âge", data.age], ["Niveau informatique", data.niveau],
+          ["Tranche d'âge", data.age], ["Niveau informatique", data.niveau],
           ["Formation choisie", data.formation], ["Durée", "1 mois"],
           ["Objectif", data.objectif], ["Moyen de paiement choisi", data.pay ? data.pay.label : "Non choisi"],
-          ["Frais d’inscription", "5 USD"], ["Frais de formation", "35 USD"],
-          ["Début de la formation", "2 novembre"], ["Date limite d’inscription", "30 octobre"],
+          ["Frais d'inscription", "5 USD"], ["Frais de formation", "35 USD"],
+          ["Début de la formation", "2 novembre"], ["Date limite d'inscription", "30 octobre"],
           ["Places maximum", "100 personnes"], ["Paiement", "Facultatif à cette étape"]
         ];
-        const safe = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-        pdfWindow.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Inscription Tekasmart - ' + safe(data.ref) + '</title><style>body{font:14px Arial,sans-serif;color:#10163A;margin:35px}h1{color:#2B44F5}p{color:#4F5678}table{width:100%;border-collapse:collapse;margin-top:24px}th,td{text-align:left;padding:10px;border-bottom:1px solid #D9DEEE;vertical-align:top}th{width:35%;background:#F4F6FB}button{padding:10px 16px}@media print{body{margin:15mm}button{display:none}}</style></head><body><h1>Tekasmart Académie</h1><p>Aperçu de la demande d’inscription · ' + safe(data.ref) + '</p><p>Durée : 1 mois · Début : 2 novembre · Date limite : 30 octobre · 100 places maximum</p><table><tbody>' + rows.map(row => '<tr><th>' + safe(row[0]) + '</th><td>' + safe(row[1]) + '</td></tr>').join('') + '</tbody></table><p>Ce document est un aperçu. Il ne confirme ni le paiement ni l’inscription définitive.</p><button onclick="window.print()">Imprimer / Enregistrer en PDF</button><script>window.onload=()=>window.print()<\/script></body></html>');
-        pdfWindow.document.close();
-      });
+        const clean = (t) => String(t).replace(/[’‘]/g, "'").replace(/[“”]/g, '"');
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: "mm", format: "a4" });
 
+        doc.setFont("helvetica", "bold"); doc.setFontSize(20); doc.setTextColor(43, 68, 245);
+        doc.text("Tekasmart Académie", 15, 20);
+        doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(79, 86, 120);
+        doc.text("Aperçu de la demande d'inscription · " + data.ref, 15, 28);
+        doc.text("Durée : 1 mois · Début : 2 novembre · Date limite : 30 octobre · 100 places", 15, 34);
+
+        let y = 46;
+        doc.setTextColor(16, 22, 58);
+        rows.forEach(([k, v]) => {
+          const lines = doc.splitTextToSize(clean(v), 115);
+          const h = Math.max(lines.length * 5.5, 8);
+          if (y + h > 280) { doc.addPage(); y = 20; }
+          doc.setFont("helvetica", "bold"); doc.text(clean(k), 15, y);
+          doc.setFont("helvetica", "normal"); doc.text(lines, 75, y);
+          doc.setDrawColor(217, 222, 238); doc.line(15, y + h - 3, 195, y + h - 3);
+          y += h + 2;
+        });
+
+        doc.setFontSize(9); doc.setTextColor(79, 86, 120);
+        doc.text("Ce document est un aperçu. Il ne confirme ni le paiement ni l'inscription définitive.", 15, y + 6);
+        doc.save("inscription-tekasmart-" + data.ref + ".pdf");
+        $("copyMsg").textContent = "PDF généré. Regardez dans vos téléchargements.";
+      });
       $("copy").addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(msg);
@@ -1321,6 +1373,7 @@ Cette inscription est une demande enregistrée sur mon appareil. Je peux envoyer
       });
     });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 
 </html>
